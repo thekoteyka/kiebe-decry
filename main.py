@@ -178,11 +178,22 @@ def force(decrypted=0):
 
 # ==============================================
 
-def newforce(lenth):
+def newforce(lenth:int, lenth_max=None, is_print=True):
+    """
+    Брутфорсит шифр от Kiebe
+    Параметры:
+    lenth: предпологаемая длинна шифра
+    lenth_max: максимальная длинна шифра, тогда параметр lenth означает минимальную длинну (включительно)
+    is_print: выводить текст, или только вернуть расшифрованый текст
+    """
     from itertools import product
 
     charset = ascii_lowercase  # abcdefghijklmnopqrstuvwxyz
     crypted = '160832e170232fdb06c944e9e0f6c99e:b2d2'
+
+    def printuwu(txt):
+        if is_print:
+            print(txt)
 
     def solve_password(maxrange):
         for i in range(maxrange+1):
@@ -190,7 +201,12 @@ def newforce(lenth):
                 if _decry(crypted, ''.join(attempt)):
                     return ''.join(attempt)
     
-    return solve_password(lenth)
+    if lenth_max:
+        for lenthNow in range(lenth, lenth_max+1):
+            printuwu(f'Проверка при длинне {lenthNow}')
+            password = solve_password(lenthNow)
+            if password:
+                return password
 
-print(newforce(5))
+print(newforce(3, 6))
     
