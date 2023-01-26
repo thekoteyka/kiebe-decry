@@ -181,16 +181,26 @@ def force(decrypted=0):
 def newforce(lenth:int, lenth_max=None, is_print=True, show_process=False):
     """
     Брутфорсит шифр от Kiebe
+    
     Параметры:
     lenth: предпологаемая длинна шифра
-    lenth_max: максимальная длинна шифра, тогда параметр lenth означает минимальную длинну (включительно)
+    lenth_max: максимальная длинна шифра (включительно), тогда параметр lenth означает минимальную длинну 
     is_print: выводить текст, или только вернуть расшифрованый текст
     show_process: показывать процесс подбора (Очень сильно увеличивает время на расшифровку)
     """
-    from itertools import product
 
+    from itertools import product  # Установлен по умолчанию
+
+
+    #  Настройки ================================================
+
+    # Буквы, которые могут находится в шифре
     charset = ascii_lowercase  # abcdefghijklmnopqrstuvwxyz
+
+    # Зашифрованое сообщение для расшифровки
     crypted = '160832e170232fdb06c944e9e0f6c99e:b2d2'
+
+    # ===========================================================
 
     def printuwu(txt):
         if is_print:
@@ -220,4 +230,3 @@ def newforce(lenth:int, lenth_max=None, is_print=True, show_process=False):
                 return password
 
 print(newforce(3, 6, True))
-    
