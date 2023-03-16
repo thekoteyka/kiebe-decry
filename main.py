@@ -1,5 +1,4 @@
 from string import ascii_lowercase
-
 def _encry(text):
     from random import randint
 
